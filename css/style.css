@@ -35,6 +35,7 @@ body {
 .button {
   width: 25%;
   border-right: 5px black solid;
+  cursor: pointer;
 }
 
 .button:first-of-type {
@@ -104,4 +105,13 @@ body {
 
 .right {
   transition: 2s all;
+}
+
+.animated {
+  transition: 2s all;
+}
+
+.floating {
+  top: 50px;
+  left: 50px;
 }

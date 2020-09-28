@@ -9,6 +9,7 @@ const wrong = new Audio("assets/wrong.mp3");
 const sequence = [];
 const delay = 0.8 * 1000;
 const numBoopsAtStart = 3;
+const floatingIconSize = 75;
 let playerTurn = false;
 let currentColorIndex = 0;
 let currentScore = 0;
@@ -23,6 +24,7 @@ document.getElementsByClassName("wrong")[0].classList.add("hidden");
 const reset = () => {
   setTimeout(() => {
     playerTurn = false;
+    playing = false;
     currentColorIndex = 0;
     currentScore = 0;
     updateScores();
@@ -58,10 +60,11 @@ function showBoop(color, short = false) {
   );
 }
 
-const verifyClick = (color) => {
-  animateClick(true);
+const verifyClick = ({ x, y, target }) => {
+  const color = target.getAttribute("data-color");
   if (playerTurn) {
     if (color === sequence[currentColorIndex].color) {
+      animateClick(x, y, true);
       showBoop(color, true);
       if (currentScore < numBoopsAtStart) {
         currentScore++;
@@ -77,20 +80,33 @@ const verifyClick = (color) => {
         setTimeout(() => showSequence(sequence, 0), delay);
       }
     } else {
+      animateClick(x, y, false);
       playSound(wrong);
       reset();
     }
   }
 };
 
-const animateClick = (x, y) => {
-  // const icon = right ? "right" : "wrong";
-  let floatingIcon = document.createElement("div");
-  floatingIcon.classList.add("floating");
+const animateClick = (x, y, right = true) => {
+  const icon = right ? "checked" : "cancel";
+  let floatingIcon = document.createElement("img");
+  floatingIcon.classList.add("animated");
   floatingIcon.style.position = "fixed";
-  floatingIcon.style.left = x;
-  floatingIcon.style.top = y;
-  document.appendChild(floatingIcon);
+  floatingIcon.src = `./assets/${icon}.png`;
+  floatingIcon.style.height = `${floatingIconSize}px`;
+  floatingIcon.style.width = `${floatingIconSize}px`;
+  floatingIcon.style.left = `${x - floatingIconSize / 2}px`;
+  floatingIcon.style.top = `${y - floatingIconSize / 2}px`;
+  floatingIcon.textContent = "THIS IS A TEST";
+  document.getElementsByClassName("container")[0].appendChild(floatingIcon);
+  // setTimeout as hacky way to have it happen after appendChild
+  setTimeout(() => {
+    floatingIcon.style.top = `${y - floatingIconSize * 2}px`;
+    floatingIcon.style.opacity = "0";
+  }, 0);
+  setTimeout(() => {
+    floatingIcon.remove();
+  }, 2000);
 };
 
 const playSound = (sound) => {
@@ -111,7 +127,7 @@ const updateScores = () => {
 
 document.querySelectorAll(".button").forEach((element) => {
   element.addEventListener("click", (e) => {
-    verifyClick(e.target.getAttribute("data-color"));
+    verifyClick(e);
   });
 });
 
@@ -140,6 +156,7 @@ document.querySelectorAll(".statuses").forEach((element) => {
   element.addEventListener("click", (e) => {
     if (!playing) {
       reset();
+      playing = true;
     }
   });
 });
