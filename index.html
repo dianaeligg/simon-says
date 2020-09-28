@@ -4,21 +4,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simon Says</title>
+  <title>Simon Said</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-  <!-- <div>
-    <div class="playButton">Click to Play!</div>
-  </div> -->
-  <div class="buttons">
-    <div data-color="red" class="button red"></div>
-    <div data-color="green" class="button green"></div>
-    <div data-color="blue" class="button blue"></div>
-    <div data-color="yellow" class="button yellow"></div>
+  <div class="container">
+    <div class="title">Simon Said</div>
+    <div class="scores">
+      <div class="currentScore">Current Score: <span class="currentScoreValue">0</span></div>
+      <div class="highScore">High Score: <span class="highScoreValue">0</span></div>
+    </div>
+    <div class="buttons">
+      <div data-color="red" class="button red"></div>
+      <div data-color="green" class="button green"></div>
+      <div data-color="blue" class="button blue"></div>
+      <div data-color="yellow" class="button yellow"></div>
+    </div>
   </div>
-
+  <div class="statuses">
+    <img class="status play" src="./assets/play.png" />
+    <img class="status right" src="./assets/checked.png" />
+    <img class="status wrong" src="./assets/cancel.png" />
+  </div>
+  <div class="sounds">
+    <img class="sound soundOn" src="./assets/volume.png" />
+    <img class="sound soundOff" src="./assets/mute.png" />
+  </div>
   <script src="js/script.js"></script>
 </body>
 

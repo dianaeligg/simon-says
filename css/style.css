@@ -1,52 +1,107 @@
-body{
+body {
   margin: 0;
+  background-color: #e3e3e3;
+  font-family: "Bangers", cursive;
 }
 
-.buttons{
-  display:flex;
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
-.button{
+.title {
+  font-size: 36px;
+  margin-top: 20px;
+}
+
+.scores {
+  display: flex;
+  justify-content: space-around;
+  width: 500px;
+  font-size: 24px;
+  margin-top: 12px;
+}
+
+.buttons {
+  margin: 5vh 14vw 14vh 14vw;
+  border: 15px black solid;
+  display: flex;
+  border-radius: 25px;
+  height: 65vh;
+  width: 65vw;
+}
+
+.button {
   width: 25%;
-  height: 100vh;
+  border-right: 5px black solid;
 }
 
-.red{
+.button:first-of-type {
+  border-radius: 5px 0 0 5px;
+}
+
+.button:last-of-type {
+  border-radius: 0 5px 5px 0;
+  border: none;
+}
+
+.red {
   background-color: rgb(110, 3, 3);
 }
 
-.blue{
+.blue {
   background-color: rgb(10, 10, 141);
 }
 
-.green{
+.green {
   background-color: rgb(5, 71, 5);
 }
 
-.yellow{
+.yellow {
   background-color: rgb(207, 207, 67);
 }
 
-.redHighlight{
+.redHighlight {
   background-color: red;
 }
 
-.blueHighlight{
+.blueHighlight {
   background-color: blue;
 }
 
-.greenHighlight{
+.greenHighlight {
   background-color: green;
 }
 
-.yellowHighlight{
+.yellowHighlight {
   background-color: yellow;
 }
 
-.playButton{
-  padding: 3rem;
-  background-color: black;
-  color: #d3d3d3;
-  position:fixed;
-  margin:auto;
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+.sound {
+  width: 75px;
+  height: 75px;
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+}
+
+.status {
+  width: 75px;
+  height: 75px;
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+}
+
+.right {
+  transition: 2s all;
 }
